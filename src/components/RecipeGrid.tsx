@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Lock, Eye, Sparkles, Flame, Zap, Shield } from "lucide-react";
+import { Lock, Eye, Sparkles, Flame, Zap, Sword } from "lucide-react";
 
 interface Recipe {
   id: string;
@@ -20,7 +20,7 @@ const recipes: Recipe[] = [
     category: "Weapons",
     difficulty: "Master",
     isEncrypted: true,
-    icon: Shield,
+    icon: Sword,
     description: "A legendary weapon essence that bends reality",
     materials: 7
   },

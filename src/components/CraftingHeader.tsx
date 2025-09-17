@@ -1,4 +1,4 @@
-import { Flame, Shield, Zap } from "lucide-react";
+import { Flame, Lock, Zap } from "lucide-react";
 
 export const CraftingHeader = () => {
   return (
@@ -19,7 +19,7 @@ export const CraftingHeader = () => {
           
           <div className="flex items-center space-x-6 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
-              <Shield className="w-4 h-4 text-primary" />
+              <Lock className="w-4 h-4 text-primary" />
               <span>Encrypted</span>
             </div>
             <div className="flex items-center space-x-2">

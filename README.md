@@ -1,108 +1,159 @@
-# 🔮 Rune Forge Secrets
+# ⚔️ Rune Forge Secrets
 
-A revolutionary FHE-powered crafting platform where your magical recipes remain encrypted until completion. Built with cutting-edge Fully Homomorphic Encryption technology.
+> *Where ancient magic meets modern cryptography*
 
-## ✨ Key Features
+A cutting-edge crafting platform that harnesses the power of **Fully Homomorphic Encryption (FHE)** to protect your most valuable recipes. Your secrets remain encrypted even during computation, ensuring complete privacy in the mystical arts.
 
-- **🔐 FHE-Encrypted Recipes**: All crafting recipes are encrypted using fully homomorphic encryption
-- **👛 Multi-Wallet Support**: Seamless integration with Rainbow, MetaMask, and other popular wallets
-- **🛡️ Privacy-First Architecture**: Your crafting secrets remain private and secure at all times
-- **⚡ Modern Tech Stack**: Built with React 18, TypeScript, Vite, and Tailwind CSS
-- **🌐 Sepolia Testnet Ready**: Deployed and tested on Ethereum Sepolia testnet
+## 🎯 What Makes This Special?
 
-## Technologies Used
+- **🔮 FHE Magic**: Recipes stay encrypted throughout the entire crafting process
+- **⚡ Lightning Fast**: Built with modern web technologies for optimal performance  
+- **🔗 Multi-Chain Ready**: Seamlessly connects to Ethereum and other networks
+- **🎨 Beautiful UI**: Intuitive interface that makes complex cryptography accessible
+- **🛡️ Battle-Tested**: Deployed on Sepolia testnet with real-world testing
 
-This project is built with:
-
-- **Frontend**: React 18, TypeScript, Vite
-- **UI Components**: shadcn/ui, Tailwind CSS
-- **Blockchain**: Ethereum (Sepolia testnet)
-- **Encryption**: FHE (Fully Homomorphic Encryption)
-- **Wallet**: RainbowKit, Wagmi, Viem
-
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ and npm
-- Git
+- Node.js 18+ 
+- npm or yarn
+- A modern web browser
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/BensonP8/rune-forge-secrets.git
+git clone https://github.com/YOUR_USERNAME/rune-forge-secrets.git
 
-# Navigate to the project directory
+# Enter the mystical workshop
 cd rune-forge-secrets
 
-# Install dependencies
+# Install the required components
 npm install
 
-# Start the development server
+# Begin your journey
 npm run dev
 ```
 
-### Environment Variables
+### Environment Setup
 
-Create a `.env.local` file in the root directory with the following variables:
+Create a `.env.local` file with your configuration:
 
 ```env
-NEXT_PUBLIC_CHAIN_ID=11155111
-NEXT_PUBLIC_RPC_URL=https://sepolia.infura.io/v3/b18fb7e6ca7045ac83c41157ab93f990
-NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=2ec9743d0d0cd7fb94dee1a7e6d33475
-NEXT_PUBLIC_INFURA_API_KEY=b18fb7e6ca7045ac83c41157ab93f990
-NEXT_PUBLIC_RPC_URL=https://1rpc.io/sepolia
+# Network Configuration
+VITE_CHAIN_ID=11155111
+VITE_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_KEY
+VITE_WALLET_CONNECT_PROJECT_ID=YOUR_WALLET_CONNECT_ID
+
+# Contract Addresses (update after deployment)
+VITE_RUNE_FORGE_SECRETS_CONTRACT=0x...
+VITE_FHE_TOKEN_CONTRACT=0x...
 ```
 
-## Smart Contracts
+## 🏗️ Architecture
 
-The project includes FHE-enabled smart contracts for secure recipe storage and management:
+### Frontend Stack
+- **React 18** - Modern UI framework
+- **TypeScript** - Type-safe development
+- **Vite** - Lightning-fast build tool
+- **Tailwind CSS** - Utility-first styling
+- **shadcn/ui** - Beautiful component library
 
-- **RuneForgeSecrets.sol**: Main contract with FHE encryption for recipe data
-- **Sepolia Testnet**: Deployed on Ethereum Sepolia testnet
+### Blockchain Integration
+- **Wagmi** - React hooks for Ethereum
+- **RainbowKit** - Wallet connection UI
+- **Viem** - TypeScript interface for Ethereum
+- **FHE SDK** - Fully Homomorphic Encryption
 
-## Development
+### Smart Contracts
+- **RuneForgeSecrets.sol** - Main FHE-enabled contract
+- **Sepolia Testnet** - Ethereum test network
 
-### Available Scripts
+## 🛠️ Development
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+### Available Commands
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run code linting
+```
 
 ### Project Structure
 
 ```
 src/
 ├── components/          # React components
-│   ├── ui/             # shadcn/ui components
-│   └── WalletConnection.tsx
+│   ├── ui/             # Reusable UI components
+│   ├── CraftingHeader.tsx
+│   ├── WalletConnection.tsx
+│   └── RecipeGrid.tsx
 ├── pages/              # Page components
 ├── hooks/              # Custom React hooks
 ├── lib/                # Utility functions
+│   └── wallet-config.ts
 └── contracts/          # Smart contract files
+    └── RuneForgeSecrets.sol
 ```
 
-## Security
+## 🔐 Security Features
 
-This project implements FHE (Fully Homomorphic Encryption) to ensure that:
+This platform implements state-of-the-art security measures:
 
-- Recipe data remains encrypted at all times
-- Computations can be performed on encrypted data
-- No sensitive information is exposed during processing
+- **FHE Encryption**: Data remains encrypted during computation
+- **Zero-Knowledge Proofs**: Verify without revealing secrets
+- **Secure Wallet Integration**: Multiple wallet provider support
+- **HTTPS Everywhere**: All communications encrypted in transit
 
-## Contributing
+## 🌟 Features
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+### For Crafters
+- Create and manage encrypted recipes
+- Track crafting progress securely
+- Build reputation through successful crafts
+- Access to exclusive FHE-protected content
 
-## License
+### For Developers
+- Clean, documented codebase
+- TypeScript for better development experience
+- Modern React patterns and hooks
+- Comprehensive testing setup
 
-MIT License - see LICENSE file for details
+## 🤝 Contributing
 
-## Support
+We welcome contributions from the community! Here's how to get started:
 
-For support and questions, please open an issue on GitHub.
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow TypeScript best practices
+- Write meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Documentation**: Check our comprehensive guides
+- **Issues**: Report bugs or request features on GitHub
+- **Discussions**: Join community conversations
+- **Discord**: Connect with other developers
+
+## 🎉 Acknowledgments
+
+- Built with ❤️ using modern web technologies
+- Inspired by the need for privacy in digital crafting
+- Powered by the Ethereum ecosystem
+- Made possible by the FHE research community
+
+---
+
+*Ready to forge your secrets? Start your journey today!* ⚔️✨

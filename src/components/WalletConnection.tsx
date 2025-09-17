@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { Wallet, Shield, Sparkles } from 'lucide-react';
+import { Wallet, Lock, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
@@ -25,7 +25,7 @@ export const WalletConnection = ({ onConnect }: WalletConnectionProps) => {
         <CardContent className="space-y-6">
           <div className="space-y-4">
             <div className="flex items-center space-x-3 text-sm text-muted-foreground">
-              <Shield className="w-4 h-4 text-primary" />
+              <Lock className="w-4 h-4 text-primary" />
               <span>FHE-encrypted recipes</span>
             </div>
             <div className="flex items-center space-x-3 text-sm text-muted-foreground">
@@ -37,7 +37,7 @@ export const WalletConnection = ({ onConnect }: WalletConnectionProps) => {
           <div className="flex flex-col items-center space-y-4">
             {/* FHE Security Badge */}
             <Badge variant="outline" className="holographic-border glow-primary">
-              <Shield className="h-3 w-3 mr-1" />
+              <Lock className="h-3 w-3 mr-1" />
               FHE Secured
             </Badge>
             

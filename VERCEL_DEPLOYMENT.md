@@ -12,7 +12,7 @@
 
 1. Go to [vercel.com](https://vercel.com) and sign in
 2. Click "New Project"
-3. Import your GitHub repository: `BensonP8/rune-forge-secrets`
+3. Import your GitHub repository: `YOUR_USERNAME/rune-forge-secrets`
 4. Select the repository and click "Import"
 
 ### Step 2: Configure Build Settings
@@ -32,9 +32,9 @@ Add the following environment variables in Vercel dashboard:
 #### Required Variables:
 ```
 VITE_CHAIN_ID=11155111
-VITE_RPC_URL=https://sepolia.infura.io/v3/b18fb7e6ca7045ac83c41157ab93f990
-VITE_WALLET_CONNECT_PROJECT_ID=2ec9743d0d0cd7fb94dee1a7e6d33475
-VITE_INFURA_API_KEY=b18fb7e6ca7045ac83c41157ab93f990
+VITE_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_KEY
+VITE_WALLET_CONNECT_PROJECT_ID=YOUR_WALLET_CONNECT_PROJECT_ID
+VITE_INFURA_API_KEY=YOUR_INFURA_API_KEY
 ```
 
 #### Optional Variables (for production):
