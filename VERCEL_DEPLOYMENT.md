@@ -19,9 +19,11 @@
 
 1. **Framework Preset**: Select "Vite"
 2. **Root Directory**: Leave as default (`.`)
-3. **Build Command**: `npm run build`
-4. **Output Directory**: `dist`
-5. **Install Command**: `npm install`
+3. **Build Command**: `npm run build` (or leave empty - vercel.json handles this)
+4. **Output Directory**: `dist` (or leave empty - vercel.json handles this)
+5. **Install Command**: `npm install` (or leave empty - vercel.json handles this)
+
+**Note**: The project includes a `vercel.json` configuration file that automatically handles these settings.
 
 ### Step 3: Environment Variables Configuration
 
@@ -84,10 +86,15 @@ VITE_FHE_TOKEN_CONTRACT=0x... (update after contract deployment)
 
 ### Common Issues:
 
-1. **Build Fails**: Check if all dependencies are in `package.json`
-2. **Environment Variables Not Loading**: Ensure they start with `VITE_`
-3. **Wallet Connection Issues**: Verify WalletConnect Project ID
-4. **Styling Issues**: Check if Tailwind CSS is properly configured
+1. **Build Fails with "lovable-tagger" Error**: 
+   - ✅ **FIXED**: This has been resolved by removing all Lovable dependencies
+   - The project now builds successfully without any Lovable references
+
+2. **Build Fails**: Check if all dependencies are in `package.json`
+3. **Environment Variables Not Loading**: Ensure they start with `VITE_`
+4. **Wallet Connection Issues**: Verify WalletConnect Project ID
+5. **Styling Issues**: Check if Tailwind CSS is properly configured
+6. **Large Bundle Size Warning**: This is normal due to wallet dependencies and can be ignored
 
 ### Support:
 - Check Vercel deployment logs for detailed error messages
