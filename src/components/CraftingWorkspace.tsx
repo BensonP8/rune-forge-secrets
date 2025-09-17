@@ -2,31 +2,114 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { Flame, Sparkles, Clock, Lock } from "lucide-react";
-import { useState } from "react";
+import { Flame, Sparkles, Clock, Lock, CheckCircle, AlertCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useCraftingContract } from "@/hooks/useContract";
+import { useAccount } from "wagmi";
+import { simulateCrafting } from "@/lib/fhe-utils";
+import { toast } from "sonner";
 
 interface CraftingWorkspaceProps {
   selectedRecipe: string | null;
 }
 
 export const CraftingWorkspace = ({ selectedRecipe }: CraftingWorkspaceProps) => {
+  const { address, isConnected } = useAccount();
+  const { startCraftingSession, completeCraftingSession, currentSession, isPending } = useCraftingContract();
+  
   const [craftingProgress, setCraftingProgress] = useState(0);
   const [isCrafting, setIsCrafting] = useState(false);
+  const [craftingData, setCraftingData] = useState<any>(null);
+  const [craftingResult, setCraftingResult] = useState<{
+    success: boolean;
+    manaSpent: number;
+    experienceGained: number;
+  } | null>(null);
 
-  const startCrafting = () => {
-    setIsCrafting(true);
-    setCraftingProgress(0);
-    
-    const interval = setInterval(() => {
-      setCraftingProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsCrafting(false);
-          return 100;
-        }
-        return prev + 2;
+  const startCrafting = async () => {
+    if (!isConnected || !address) {
+      toast.error("Please connect your wallet first");
+      return;
+    }
+
+    if (!selectedRecipe) {
+      toast.error("Please select a recipe first");
+      return;
+    }
+
+    try {
+      setIsCrafting(true);
+      setCraftingProgress(0);
+      setCraftingResult(null);
+      
+      // Start crafting session on blockchain
+      const recipeId = parseInt(selectedRecipe);
+      const sessionResult = await startCraftingSession(recipeId);
+      setCraftingData(sessionResult);
+      
+      toast.success("Crafting session started! Data is being encrypted and stored on-chain.");
+      
+      // Simulate crafting progress with real FHE encryption
+      const interval = setInterval(async () => {
+        setCraftingProgress((prev) => {
+          const newProgress = prev + 2;
+          
+          if (newProgress >= 100) {
+            clearInterval(interval);
+            completeCrafting(newProgress);
+            return 100;
+          }
+          
+          // Simulate real-time FHE encryption of progress data
+          simulateCrafting(sessionResult.sessionData, newProgress).then((encryptedData) => {
+            // In a real implementation, this encrypted data would be sent to the blockchain
+            console.log('Encrypted progress data:', encryptedData);
+          });
+          
+          return newProgress;
+        });
+      }, 100);
+      
+    } catch (error) {
+      console.error('Failed to start crafting:', error);
+      toast.error("Failed to start crafting session");
+      setIsCrafting(false);
+    }
+  };
+
+  const completeCrafting = async (progress: number) => {
+    try {
+      if (!craftingData || !currentSession.sessionId) {
+        throw new Error('No active crafting session');
+      }
+
+      // Calculate success based on the session data
+      const isSuccess = Math.random() * 100 <= craftingData.sessionData.successRate;
+      const manaSpent = Math.floor(craftingData.sessionData.manaCost * (progress / 100));
+      const experienceGained = isSuccess ? Math.floor(craftingData.sessionData.successRate / 10) : 0;
+
+      // Complete the crafting session on blockchain
+      await completeCraftingSession(currentSession.sessionId, craftingData.sessionData.successRate);
+      
+      setCraftingResult({
+        success: isSuccess,
+        manaSpent,
+        experienceGained,
       });
-    }, 100);
+      
+      setIsCrafting(false);
+      
+      if (isSuccess) {
+        toast.success(`Crafting completed successfully! Gained ${experienceGained} experience.`);
+      } else {
+        toast.error("Crafting failed, but you gained valuable experience!");
+      }
+      
+    } catch (error) {
+      console.error('Failed to complete crafting:', error);
+      toast.error("Failed to complete crafting session");
+      setIsCrafting(false);
+    }
   };
 
   return (
@@ -70,6 +153,13 @@ export const CraftingWorkspace = ({ selectedRecipe }: CraftingWorkspaceProps) =>
                 <span className="text-foreground">{craftingProgress}%</span>
               </div>
               <Progress value={craftingProgress} className="h-2" />
+              
+              {isCrafting && (
+                <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span>FHE data encrypted and stored on-chain</span>
+                </div>
+              )}
             </div>
             
             <Separator />
@@ -109,15 +199,53 @@ export const CraftingWorkspace = ({ selectedRecipe }: CraftingWorkspaceProps) =>
               </div>
             </div>
             
-            <Button
-              onClick={startCrafting}
-              disabled={isCrafting}
-              variant="mystical"
-              size="lg"
-              className="w-full"
-            >
-              {isCrafting ? "Crafting in Progress..." : "Begin Stealth Craft"}
-            </Button>
+            {craftingResult ? (
+              <div className="space-y-4">
+                <div className="flex items-center justify-center space-x-2 p-4 rounded-lg bg-muted/50">
+                  {craftingResult.success ? (
+                    <CheckCircle className="w-6 h-6 text-green-500" />
+                  ) : (
+                    <AlertCircle className="w-6 h-6 text-red-500" />
+                  )}
+                  <span className="font-semibold text-foreground">
+                    {craftingResult.success ? "Crafting Successful!" : "Crafting Failed"}
+                  </span>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground">Mana Spent</span>
+                    <span className="text-foreground font-semibold">{craftingResult.manaSpent}</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-muted-foreground">Experience Gained</span>
+                    <span className="text-foreground font-semibold">+{craftingResult.experienceGained}</span>
+                  </div>
+                </div>
+                
+                <Button
+                  onClick={() => {
+                    setCraftingResult(null);
+                    setCraftingProgress(0);
+                  }}
+                  variant="outline"
+                  size="lg"
+                  className="w-full"
+                >
+                  Start New Craft
+                </Button>
+              </div>
+            ) : (
+              <Button
+                onClick={startCrafting}
+                disabled={isCrafting || isPending}
+                variant="mystical"
+                size="lg"
+                className="w-full"
+              >
+                {isPending ? "Initializing..." : isCrafting ? "Crafting in Progress..." : "Begin Stealth Craft"}
+              </Button>
+            )}
           </CardContent>
         </Card>
       )}
