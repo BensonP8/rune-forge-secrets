@@ -1,13 +1,14 @@
-# Rune Forge Secrets
+# 🔮 Rune Forge Secrets
 
-A secure, privacy-preserving crafting platform built with FHE (Fully Homomorphic Encryption) technology.
+A revolutionary FHE-powered crafting platform where your magical recipes remain encrypted until completion. Built with cutting-edge Fully Homomorphic Encryption technology.
 
-## Features
+## ✨ Key Features
 
-- **FHE-Encrypted Recipes**: All crafting recipes are encrypted using fully homomorphic encryption
-- **Wallet Integration**: Secure wallet connection with multiple provider support
-- **Privacy-First Design**: Your crafting secrets remain private and secure
-- **Modern UI**: Built with React, TypeScript, and Tailwind CSS
+- **🔐 FHE-Encrypted Recipes**: All crafting recipes are encrypted using fully homomorphic encryption
+- **👛 Multi-Wallet Support**: Seamless integration with Rainbow, MetaMask, and other popular wallets
+- **🛡️ Privacy-First Architecture**: Your crafting secrets remain private and secure at all times
+- **⚡ Modern Tech Stack**: Built with React 18, TypeScript, Vite, and Tailwind CSS
+- **🌐 Sepolia Testnet Ready**: Deployed and tested on Ethereum Sepolia testnet
 
 ## Technologies Used
 
