@@ -76,11 +76,16 @@ VITE_FHE_TOKEN_CONTRACT=0x... (update after contract deployment)
 ## Post-Deployment Checklist
 
 - [ ] Verify wallet connection works
+- [ ] Test "Begin Stealth Craft" functionality
+- [ ] Verify FHE encryption is working
+- [ ] Test crafter registration process
+- [ ] Check crafting history display
 - [ ] Test on different devices/browsers
 - [ ] Check console for any errors
 - [ ] Verify environment variables are loaded
 - [ ] Test responsive design
 - [ ] Confirm HTTPS is working
+- [ ] Test blockchain transaction flow
 
 ## Troubleshooting
 
